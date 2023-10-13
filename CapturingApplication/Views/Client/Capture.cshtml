@@ -1,0 +1,28 @@
+﻿@model Application.Core.Dtos.ClientDto
+@{
+}
+<h1>Add New Cliend details</h1>
+<form method="post" action="Capture" class="mt-5">
+    
+    <div class="mb-3">
+        <label for="" class="form-label">Client Name</label>
+        <input type="text" class="form-control"  asp-for="ClientName">
+        @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Date Registered</label>
+        <input type="date" class="form-control" asp-for="DateRegisterd">
+        @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Location</label>
+        <input type="text" class="form-control" asp-for="Location">
+        @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Number of Users per System</label>
+        <input type="number" class="form-control" asp-for="NumberOfSystemUsers">
+        @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
