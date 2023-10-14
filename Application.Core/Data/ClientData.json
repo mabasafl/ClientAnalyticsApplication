@@ -2,28 +2,28 @@
   {
     "RecordId": "baa23b0f-a8ff-4242-a12d-295a143f847f",
     "ClientName": "Fumi Logistics",
-    "DateRegisterd": "2023-10-13T02:25:22",
+    "DateRegisterd": "2023-10-19T00:00:00",
     "Location": "Johannesburg",
     "NumberOfSystemUsers": 10
   },
   {
     "RecordId": "850a02bc-94bd-4ad4-b608-3b20eb88d8b1",
     "ClientName": "Europcar",
-    "DateRegisterd": "2023-10-13T02:25:22",
+    "DateRegisterd": "2023-10-19T00:00:00",
     "Location": "Bruma",
-    "NumberOfSystemUsers": 23
+    "NumberOfSystemUsers": 20
   },
   {
     "RecordId": "2e47021c-40ef-41cf-afad-ed2d9d3243f7",
     "ClientName": "Prime reason",
-    "DateRegisterd": "2023-10-13T02:25:22",
+    "DateRegisterd": "2023-10-19T00:00:00",
     "Location": "Bryanston",
     "NumberOfSystemUsers": 14
   },
   {
     "RecordId": "65b4355e-0972-4c89-87f9-79bcb0a61a0a",
     "ClientName": "Tempest",
-    "DateRegisterd": "2023-10-13T02:25:22",
+    "DateRegisterd": "2023-10-19T00:00:00",
     "Location": "Malamulele",
     "NumberOfSystemUsers": 1
   },
@@ -31,7 +31,7 @@
     "RecordId": "2416fb93-865a-4f30-ae2e-4fd79b373fcf",
     "ClientName": "ftg",
     "DateRegisterd": "2023-10-19T00:00:00",
-    "Location": "fd",
+    "Location": "Fumi Logistics",
     "NumberOfSystemUsers": 5
   },
   {
@@ -43,9 +43,23 @@
   },
   {
     "RecordId": "7d2faa3f-2077-4012-8fac-8f25a02588b0",
-    "ClientName": "gfd",
+    "ClientName": "Fumi Logistics",
     "DateRegisterd": "2023-10-04T00:00:00",
-    "Location": "gf",
+    "Location": "Bruma",
     "NumberOfSystemUsers": 5
+  },
+  {
+    "RecordId": "b8729efb-b47d-45af-8045-94c3dfc9947b",
+    "ClientName": "Fumi test",
+    "DateRegisterd": "2023-10-17T00:00:00",
+    "Location": "Mhinga",
+    "NumberOfSystemUsers": 67
+  },
+  {
+    "RecordId": "972326ec-81a5-410b-bbfc-42962f019aed",
+    "ClientName": "Rulani Pty Ltd",
+    "DateRegisterd": "2023-10-10T00:00:00",
+    "Location": "Bruma",
+    "NumberOfSystemUsers": 75
   }
 ]

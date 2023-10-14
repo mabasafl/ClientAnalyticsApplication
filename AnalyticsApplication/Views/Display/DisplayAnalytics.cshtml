@@ -1,0 +1,139 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div style="display: grid;grid-auto-flow: column;" class="mt-3">
+    <canvas id="myChartBar" style="max-width:400px; max-height:430px;"></canvas>
+    <canvas id="myChartPie" style="max-width:400px; max-height:430px"></canvas>
+    <canvas id="myChartLine" style="max-width:400px; max-height:430px"></canvas>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadBar();
+        LoadPie();
+        LoadLine();
+    });
+
+    function LoadBar() {
+                $.ajax({
+                    type: "POST",
+                    url: "/Display/GetClientData",
+                    data: "",
+                    contextType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccessResult,
+                    error: OnError
+                });
+
+                function OnSuccessResult(data){
+                    var _data = data;
+                    var _chartLabels = data[1];
+                    var _chartData = data[0];
+
+            var barColor = ['rgba(255,0,0,0.8)', 'rgba(32,127,107,1)', 'rgba(0,0,255,.8)', 'rgba(255,136,0,1)', 'rgba(255,255,2,1)', 'rgba(0,255,0,1)', 'rgba(153,0,150,1)', 'rgba(123,82,0,1)', 'rgba(32,127,174,1)'];
+
+                    new Chart("myChartBar",{
+                        type: "bar",
+                        data:{
+                            labels: _chartLabels,
+                            datasets:[{
+                                backgroundColor: barColor,
+                                data: _chartData,
+                                label: "Number of users per location",
+                            }]
+                        }
+                    });
+                }
+
+                function OnError(err) {
+                }
+    }
+
+    function LoadPie() {
+        $.ajax({
+            type: "POST",
+            url: "/Display/GetClientData",
+            data: "",
+            contextType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: OnSuccessResult,
+            error: OnError
+        });
+
+        function OnSuccessResult(data) {
+            var _data = data;
+            var _chartLabels = data[2];
+            var _chartData = data[3];
+
+            var barColor = ['rgba(255,0,0,0.8)', 'rgba(32,127,107,1)', 'rgba(0,0,255,.8)', 'rgba(255,136,0,1)', 'rgba(255,255,2,1)', 'rgba(0,255,0,1)', 'rgba(153,0,150,1)', 'rgba(123,82,0,1)', 'rgba(32,127,174,1)'];
+
+            new Chart("myChartPie", {
+                type: "pie",
+                data: {
+                    labels: _chartLabels,
+                    datasets: [{
+                        label: 'Number of Users overall across the clients',
+                        backgroundColor: barColor,
+                        data: _chartData
+                    }]
+                }
+            });
+        }
+
+        function OnError(err) {
+        }
+    }
+
+    function LoadLine() {
+        $.ajax({
+            type: "POST",
+            url: "/Display/GetClientData",
+            data: "",
+            contextType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: OnSuccessResult,
+            error: OnError
+        });
+
+        function OnSuccessResult(data) {
+            var _data = data;
+            var _chartLabels = data[5];
+            var _chartData = data[4];
+
+            var barColor = ['rgba(255,0,176,0.8)', 'rgba(32,127,107,1)', 'rgba(0,0,255,.8)', 'rgba(255,136,0,1)', 'rgba(255,255,2,1)', 'rgba(0,255,0,1)', 'rgba(153,0,150,1)', 'rgba(123,82,0,1)', 'rgba(32,127,174,1)'];
+
+            new Chart("myChartLine", {
+                type: "line",
+                data: {
+                    labels: _chartLabels,
+                    datasets: [{
+                        label: 'Number of Clients created per Date',
+                        data: _chartData,
+                        backgroundColor: barColor,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1,
+                        pointBorderWidth:5,
+                        pointBorderColor: barColor
+                        
+                    }]
+                }
+            });
+        }
+
+        function OnError(err) {
+        }
+    }
+
+
+
+</script>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
