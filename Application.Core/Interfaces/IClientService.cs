@@ -10,7 +10,12 @@ namespace Application.Core.Interfaces
 {
     public interface IClientService
     {
-        IEnumerable<ClientDto> DisplayAllClients();
+        List<ClientDto> DisplayAllClients();
         bool CaptureClientsDetails(Client client);
+        T DisplayClients<T>();
+        List<int> GetNumberOfClientsPerdate();
+        List<string> GetDatePerClient();
+        List<double> GetNumberOfUsersPerLocation();
+        List<string> GetLocationPerNumberOfUser();
     }
 }

@@ -1,7 +1,18 @@
+using Application.Core.Dtos;
+using Application.Core.Helpers;
+using Application.Core.Interfaces;
+using Application.Core.Mappers;
+using Application.Core.Models;
+using Application.Core.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IMapper<Client, ClientDto>, ClientMapper>();
+builder.Services.AddScoped<JsonDataHelper>();
 
 var app = builder.Build();
 

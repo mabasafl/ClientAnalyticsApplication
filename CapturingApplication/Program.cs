@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IClientService,ClientService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IMapper<Client, ClientDto>, ClientMapper>();
 builder.Services.AddScoped<JsonDataHelper>();
 
