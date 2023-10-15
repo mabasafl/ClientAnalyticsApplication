@@ -17,14 +17,14 @@ namespace Application.Core.Services
         public bool CaptureClientsDetails(Client client)
         {
             var isClientCaptured = false;
-            string path = @"C:\\Users\\FumisaniMabasa\\Fumisani\\DeveloperAssessment\\ClientAnalyticsApplication\\Application.Core\\Data\\ClientData.json";
+            string path = DataPath();
 
             var captureClient = _clientMapper.Map(client);
 
             var clients = _jsonDataHelper.ReadJsonFile<List<ClientDto>>(path);
             clients.Add(captureClient);
             var response = _jsonDataHelper.WriteToJsonFile(clients, path);
-            if(response == true)
+            if (response == true)
                 isClientCaptured = true;
 
             return isClientCaptured;
@@ -32,35 +32,25 @@ namespace Application.Core.Services
 
         public List<ClientDto> DisplayAllClients()
         {
-            string path = @"C:\\Users\\FumisaniMabasa\\Fumisani\\DeveloperAssessment\\ClientAnalyticsApplication\\Application.Core\\Data\\ClientData.json";
+            string path = DataPath();
             var clients = _jsonDataHelper.ReadJsonFile<List<ClientDto>>(path);
             return clients;
         }
 
-        public T DisplayClients<T>()
+        public bool DoesClientExist(string clientName)
         {
-            string path = @"C:\\Users\\FumisaniMabasa\\Fumisani\\DeveloperAssessment\\ClientAnalyticsApplication\\Application.Core\\Data\\ClientData.json";
-            var clients = _jsonDataHelper.ReadJsonFile<T>(path);
-            return clients;
+            bool clientExist = false;
+            var client = DisplayAllClients().Where(cn => cn.ClientName == clientName).FirstOrDefault();
+
+            if (client == null) return false;
+            if (client.ClientName == clientName)
+                clientExist = true;
+
+
+            return clientExist;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public List<(DateTime Date, int NumberOfClientsCreated)> GetNumberOfClientsPerdateTest()
+        private List<(DateTime Date, int NumberOfClientsCreated)> GetNumberOfClientsPerdateTest()
         {
             var clients = DisplayAllClients();
 
@@ -68,12 +58,12 @@ namespace Application.Core.Services
 
             foreach (var client in clients)
             {
-                if (!numberOfClientsCreatedPerDate.ContainsKey(client.DateRegisterd))
+                if (!numberOfClientsCreatedPerDate.ContainsKey(client.DateRegistered))
                 {
-                    numberOfClientsCreatedPerDate[client.DateRegisterd] = 0;
+                    numberOfClientsCreatedPerDate[client.DateRegistered] = 0;
                 }
 
-                numberOfClientsCreatedPerDate[client.DateRegisterd]++;
+                numberOfClientsCreatedPerDate[client.DateRegistered]++;
             }
 
             var numberOfClientsCreatedPerDateList = new List<(DateTime Date, int NumberOfClientsCreated)>();
@@ -112,7 +102,7 @@ namespace Application.Core.Services
             return clientsPerUser; ;
         }
 
-        public List<(string Location, double TotalNumberOfUsers)> GetNumberOfUsersPerLocation1()
+        private List<(string Location, double TotalNumberOfUsers)> GetNumberOfUsersPerLocation1()
         {
 
             var clients = DisplayAllClients();
@@ -163,6 +153,15 @@ namespace Application.Core.Services
             }
 
             return locationPerUser; ;
+        }
+
+        private string DataPath()
+        {
+            string dirPath = "C:\\Users\\FumisaniMabasa\\Fumisani\\DeveloperAssessment\\";
+            string clientDataFileName = "ClientAnalyticsApplication\\Application.Core\\Data\\ClientData.json";
+            string path = Path.Combine(dirPath, clientDataFileName);
+
+            return path;
         }
 
     }

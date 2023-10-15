@@ -1,10 +1,5 @@
 ﻿using Application.Core.Dtos;
 using Application.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Core.Interfaces
 {
@@ -12,10 +7,10 @@ namespace Application.Core.Interfaces
     {
         List<ClientDto> DisplayAllClients();
         bool CaptureClientsDetails(Client client);
-        T DisplayClients<T>();
         List<int> GetNumberOfClientsPerdate();
         List<string> GetDatePerClient();
         List<double> GetNumberOfUsersPerLocation();
         List<string> GetLocationPerNumberOfUser();
+        bool DoesClientExist(string client);
     }
 }
