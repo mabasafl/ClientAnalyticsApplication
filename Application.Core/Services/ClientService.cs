@@ -2,12 +2,6 @@
 using Application.Core.Helpers;
 using Application.Core.Interfaces;
 using Application.Core.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Core.Services
 {
@@ -49,36 +43,13 @@ namespace Application.Core.Services
             var clients = _jsonDataHelper.ReadJsonFile<T>(path);
             return clients;
         }
-        /*public List<int> GetNumberOfClientsPerdate()
-        {
-            var clients = DisplayAllClients();
-            var totalOfEachDate = new List<int>();
 
-            var dates = new HashSet<DateTime>();
-            foreach (var client in clients)
-            {
-                dates.Add(client.DateRegisterd.Date);
-            }
 
-            foreach (var date in dates)
-            {
-                int numberOfClientsResgisteredOnDate = 0;
-                foreach (var client in clients)
-                {
-                    if (client.DateRegisterd.Date == date.Date)
-                    {
-                        numberOfClientsResgisteredOnDate++;
-                    }
-                }
 
-                totalOfEachDate.Add(numberOfClientsResgisteredOnDate);
-            }
 
-            //to remove
-            GetNumberOfClientsPerdateTest();
 
-            return totalOfEachDate;
-        }*/
+
+
 
 
 
@@ -117,10 +88,10 @@ namespace Application.Core.Services
 
         public List<int> GetNumberOfClientsPerdate()
         {
-            List<(DateTime, int)> numberOfUsersTuple = GetNumberOfClientsPerdateTest();
+            List<(DateTime, int)> numberOfUsersList = GetNumberOfClientsPerdateTest();
             List<int> userSum = new List<int>();
 
-            foreach ((DateTime date, int total) in numberOfUsersTuple)
+            foreach ((DateTime date, int total) in numberOfUsersList)
             {
                 userSum.Add(total);
             }
@@ -140,62 +111,6 @@ namespace Application.Core.Services
 
             return clientsPerUser; ;
         }
-
-        /*public List<(string Location, DateTime TotalNumberOfUsers)> GetNumberOfClientsPerdateTest()
-        {
-
-            var clients = DisplayAllClients();
-
-            var totalNumberOfUsersPerLocation = new Dictionary<string, DateTime>();
-
-            foreach (var client in clients)
-            {
-                if (!totalNumberOfUsersPerLocation.ContainsKey(client.Location))
-                {
-                    totalNumberOfUsersPerLocation[client.Location] = 0;
-                }
-
-                totalNumberOfUsersPerLocation[client.Location] += client.NumberOfSystemUsers;
-            }
-
-            var totalNumberOfUsersPerLocationSumList = new List<(string Location, DateTime TotalNumberOfUsers)>();
-
-            foreach (var (location, totalNumberOfUsers) in totalNumberOfUsersPerLocation)
-            {
-                totalNumberOfUsersPerLocationSumList.Add((location, totalNumberOfUsers));
-            }
-
-            return totalNumberOfUsersPerLocationSumList;
-        }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public List<(string Location, double TotalNumberOfUsers)> GetNumberOfUsersPerLocation1()
         {
@@ -226,10 +141,10 @@ namespace Application.Core.Services
 
         public List<double> GetNumberOfUsersPerLocation()
         {
-            List<(string, double)> numberOfUsersTuple = GetNumberOfUsersPerLocation1();
+            List<(string, double)> numberOfUsersList = GetNumberOfUsersPerLocation1();
             List<double> userSum = new List<double>();
 
-            foreach ((string location,double total) in numberOfUsersTuple)
+            foreach ((string location, double total) in numberOfUsersList)
             {
                 userSum.Add(total);
             }
@@ -239,17 +154,16 @@ namespace Application.Core.Services
 
         public List<string> GetLocationPerNumberOfUser()
         {
-            List<(string, double)> numberOfUsersTuple = GetNumberOfUsersPerLocation1();
+            List<(string, double)> numberOfUsersList = GetNumberOfUsersPerLocation1();
             List<string> locationPerUser = new List<string>();
 
-            foreach ((string location, double total) in numberOfUsersTuple)
+            foreach ((string location, double total) in numberOfUsersList)
             {
                 locationPerUser.Add(location);
             }
 
             return locationPerUser; ;
         }
-
 
     }
 }
