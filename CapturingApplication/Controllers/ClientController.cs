@@ -12,6 +12,10 @@ namespace CapturingApplication.Controllers
         {
                 _clientService = clientService;
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
         [HttpGet]
         public IActionResult Capture()
         {
@@ -23,8 +27,17 @@ namespace CapturingApplication.Controllers
         {
             try
             {
-                var response = _clientService.CaptureClientsDetails(client);
-                return RedirectToAction("Capture");
+                if(ModelState.IsValid) 
+                {
+                    var response = _clientService.CaptureClientsDetails(client);
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Capture");
+                }
+                
+                //return RedirectToAction("Capture");
             }
             catch (Exception ex)
             {
