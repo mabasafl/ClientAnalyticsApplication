@@ -10,12 +10,9 @@ namespace CapturingApplication.Controllers
         public readonly IClientService _clientService;
         public ClientController(IClientService clientService)
         {
-                _clientService = clientService;
+            _clientService = clientService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
         [HttpGet]
         public IActionResult Capture()
         {
@@ -27,23 +24,29 @@ namespace CapturingApplication.Controllers
         {
             try
             {
-                if(ModelState.IsValid) 
+                var clienAlreadyExist = _clientService.DoesClientExist(client.ClientName);
+                if (clienAlreadyExist)
+                {
+                    ModelState.AddModelError("ClientName", $"A record of a client with the same name:{client.ClientName} already exist. Please add a different client.");
+                }
+
+                if (ModelState.IsValid)
                 {
                     var response = _clientService.CaptureClientsDetails(client);
-                    return View();
+                    TempData["AlertMessage"] = $"Record of client: {client.ClientName} has successfully been captured.";
+                    return RedirectToAction("Capture");
                 }
                 else
                 {
-                    return RedirectToAction("Capture");
+                    return View();
                 }
-                
-                //return RedirectToAction("Capture");
+
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Capture");
             }
-            
+
         }
     }
 }

@@ -1,25 +1,35 @@
 ﻿@model Application.Core.Dtos.ClientDto
-@{
+
+<h1>Add new client details</h1>
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success mt-5">
+        <strong>Success </strong>@TempData["AlertMessage"]
+    </div>
 }
-<h1>Add New Cliend details</h1>
-<form method="post" action="Capture" class="mt-5">
-    
+
+<form method="post" action="/client/Capture" class="mt-2">
+
     <div class="mb-3">
         <label for="ClientName" class="form-label">Client Name</label>
-        <input type="text" class="form-control"  asp-for="ClientName">
+        <input type="text" class="form-control" asp-for="ClientName">
         <span asp-validation-for="ClientName" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Date Registered</label>
-        <input type="date" class="form-control" asp-for="DateRegisterd">
+        <input type="date" class="form-control" asp-for="DateRegistered">
+        <span asp-validation-for="DateRegistered" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Location</label>
         <input type="text" class="form-control" asp-for="Location">
+        <span asp-validation-for="Location" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Number of Users per System</label>
-        <input type="number" class="form-control" asp-for="NumberOfSystemUsers">
+        <input type="number" class="form-control" min="0" asp-for="NumberOfSystemUsers">
+        <span asp-validation-for="NumberOfSystemUsers" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

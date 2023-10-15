@@ -11,10 +11,6 @@ namespace AnalyticsApplication.Controllers
         {
                 _clientService = clientService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         public IActionResult DisplayAnalytics()
         {
@@ -26,29 +22,23 @@ namespace AnalyticsApplication.Controllers
         {
             List<object> data = new List<object>();
 
-
             //Number of users per location
-            List<double> numberOfUserPerLocation = _clientService.GetNumberOfUsersPerLocation();
-            data.Add(numberOfUserPerLocation);
-            List<string> locationPerNumberOfUser = _clientService.GetLocationPerNumberOfUser();
-            data.Add(locationPerNumberOfUser);
-
-            
-
+            List<double> numberOfUserPerLocationLabel = _clientService.GetNumberOfUsersPerLocation();
+            data.Add(numberOfUserPerLocationLabel);
+            List<string> locationPerNumberOfUserLabel = _clientService.GetLocationPerNumberOfUser();
+            data.Add(locationPerNumberOfUserLabel);
 
             //Number of Users overall across the clients
             List<string> clientLabel = _clientService.DisplayAllClients().Select(x => x.ClientName).ToList();
             data.Add(clientLabel);
-            List<int> systemUserNumber = _clientService.DisplayAllClients().Select(x => x.NumberOfSystemUsers).ToList();
-            data.Add(systemUserNumber);
-
+            List<int> systemUserNumberLabel = _clientService.DisplayAllClients().Select(x => x.NumberOfSystemUsers).ToList();
+            data.Add(systemUserNumberLabel);
 
             //Number of Clients created per Date (not Time)
-            List<int> numberOfClientsPerDate = _clientService.GetNumberOfClientsPerdate();
-            data.Add(numberOfClientsPerDate);
-            List<string> datePerClient = _clientService.GetDatePerClient();
-            data.Add(datePerClient);
-
+            List<int> numberOfClientsPerDateLabel = _clientService.GetNumberOfClientsPerdate();
+            data.Add(numberOfClientsPerDateLabel);
+            List<string> datePerClientLabel = _clientService.GetDatePerClient();
+            data.Add(datePerClientLabel);
 
             return data;
         }

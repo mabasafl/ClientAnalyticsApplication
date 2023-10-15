@@ -12,7 +12,7 @@ namespace Application.Core.Mappers
             {
                 RecordId = Guid.NewGuid(),
                 ClientName = model.ClientName,
-                DateRegisterd = model.DateRegisterd,
+                DateRegistered = model.DateRegistered,
                 Location = model.Location,
                 NumberOfSystemUsers = model.NumberOfSystemUsers
             };
@@ -24,7 +24,7 @@ namespace Application.Core.Mappers
             {
                 RecordId = dto.RecordId,
                 ClientName = dto.ClientName,
-                DateRegisterd = dto.DateRegisterd,
+                DateRegistered = dto.DateRegistered,
                 Location = dto.Location,
                 NumberOfSystemUsers = dto.NumberOfSystemUsers
             };
